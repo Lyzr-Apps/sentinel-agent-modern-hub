@@ -158,7 +158,13 @@ export async function POST(request: NextRequest) {
     const rawText = await response.text()
 
     if (response.ok) {
+      console.log('[Agent API] Raw response length:', rawText.length)
+      console.log('[Agent API] Raw response preview:', rawText.substring(0, 500))
+
       const parsed = parseLLMJson(rawText)
+
+      console.log('[Agent API] Parsed result type:', typeof parsed)
+      console.log('[Agent API] Parsed result keys:', parsed ? Object.keys(parsed).join(', ') : 'null')
 
       if (parsed?.success === false && parsed?.error) {
         return NextResponse.json({
@@ -174,6 +180,9 @@ export async function POST(request: NextRequest) {
       }
 
       const normalized = normalizeResponse(parsed)
+
+      console.log('[Agent API] Normalized response status:', normalized.status)
+      console.log('[Agent API] Normalized result keys:', normalized.result ? Object.keys(normalized.result).join(', ') : 'null')
 
       return NextResponse.json({
         success: true,

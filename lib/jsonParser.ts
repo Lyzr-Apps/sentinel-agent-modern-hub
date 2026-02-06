@@ -210,6 +210,25 @@ export default function parseLLMJson(
       }
     }
 
+    // AGGRESSIVE: Find first { or [ and extract from there
+    const firstBraceIdx = t.indexOf('{')
+    const firstBracketIdx = t.indexOf('[')
+    let startIdx = -1
+
+    if (firstBraceIdx !== -1 && firstBracketIdx !== -1) {
+      startIdx = Math.min(firstBraceIdx, firstBracketIdx)
+    } else if (firstBraceIdx !== -1) {
+      startIdx = firstBraceIdx
+    } else if (firstBracketIdx !== -1) {
+      startIdx = firstBracketIdx
+    }
+
+    if (startIdx !== -1) {
+      const fromStart = t.substring(startIdx)
+      const bounded = findJsonBoundaries(fromStart)
+      if (bounded) results.push({ content: bounded.trim(), priority: 0 }) // Highest priority
+    }
+
     const bounded = findJsonBoundaries(t)
     if (bounded) results.push({ content: bounded.trim(), priority: 4 })
 

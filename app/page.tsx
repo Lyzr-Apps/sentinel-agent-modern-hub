@@ -187,11 +187,21 @@ export default function Home() {
           // If response is a string that needs parsing
           else if (typeof responseData === 'string') {
             try {
-              const parsed = JSON.parse(responseData)
+              // Try to find JSON in the string by looking for first {
+              let jsonStr = responseData.trim()
+              const firstBrace = jsonStr.indexOf('{')
+              if (firstBrace > 0) {
+                // There's text before the JSON, strip it
+                jsonStr = jsonStr.substring(firstBrace)
+                console.log('Stripped preamble from response, new string starts with:', jsonStr.substring(0, 50))
+              }
+
+              const parsed = JSON.parse(jsonStr)
               governanceResult = parsed.result || parsed
             } catch (parseError) {
               console.error('Failed to parse response string:', parseError)
-              setError('Failed to parse agent response')
+              console.error('Response string was:', responseData)
+              setError(`Failed to parse agent response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}`)
               return
             }
           } else {
