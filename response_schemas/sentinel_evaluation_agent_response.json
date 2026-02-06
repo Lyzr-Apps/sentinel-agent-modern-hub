@@ -1,0 +1,97 @@
+{
+  "agent_name": "Sentinel Evaluation Agent",
+  "agent_id": "6985999207ec48e3dc90a27b",
+  "agent_purpose": "risk_evaluation",
+  "description": "Evaluates execution plans for safety, ethical, and operational risks with governance decisions and detailed risk scoring",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "decision": "string",
+      "overall_risk_score": "number",
+      "severity_level": "string",
+      "risk_breakdown": {
+        "safety_score": "number",
+        "irreversibility_score": "number",
+        "ethics_score": "number",
+        "financial_score": "number",
+        "reputation_score": "number"
+      },
+      "evaluation_summary": "string",
+      "specific_concerns": [
+        "string"
+      ],
+      "modification_guidance": "null",
+      "blocked_reasons": "null",
+      "clarification_requests": "string",
+      "approved_with_conditions": "null"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "evaluation_method": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "decision": "CLARIFY",
+      "overall_risk_score": 0,
+      "severity_level": "LOW",
+      "risk_breakdown": {
+        "safety_score": 0,
+        "irreversibility_score": 0,
+        "ethics_score": 0,
+        "financial_score": 0,
+        "reputation_score": 0
+      },
+      "evaluation_summary": "No execution plan provided for evaluation. Unable to assess risks without plan details.",
+      "specific_concerns": [
+        "No execution plan submitted",
+        "Missing operational context",
+        "Insufficient information to conduct risk assessment"
+      ],
+      "modification_guidance": null,
+      "blocked_reasons": null,
+      "clarification_requests": "Please provide the execution plan you would like evaluated. The plan should include: (1) Objective or goal, (2) Specific actions or steps to be taken, (3) Resources involved (systems, data, budget), (4) Expected outcomes, (5) Stakeholders affected, and (6) Any existing safeguards or constraints.",
+      "approved_with_conditions": null
+    },
+    "metadata": {
+      "agent_name": "Sentinel Evaluation Agent",
+      "timestamp": "2025-01-17T10:30:00Z",
+      "evaluation_method": "hybrid_rule_and_reasoning"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T07:41:11.285848",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "decision": "CLARIFY",
+      "overall_risk_score": 0,
+      "severity_level": "LOW",
+      "risk_breakdown": {
+        "safety_score": 0,
+        "irreversibility_score": 0,
+        "ethics_score": 0,
+        "financial_score": 0,
+        "reputation_score": 0
+      },
+      "evaluation_summary": "No execution plan provided for evaluation. Unable to assess risks without plan details.",
+      "specific_concerns": [
+        "No execution plan submitted",
+        "Missing operational context",
+        "Insufficient information to conduct risk assessment"
+      ],
+      "modification_guidance": null,
+      "blocked_reasons": null,
+      "clarification_requests": "Please provide the execution plan you would like evaluated. The plan should include: (1) Objective or goal, (2) Specific actions or steps to be taken, (3) Resources involved (systems, data, budget), (4) Expected outcomes, (5) Stakeholders affected, and (6) Any existing safeguards or constraints.",
+      "approved_with_conditions": null
+    },
+    "metadata": {
+      "agent_name": "Sentinel Evaluation Agent",
+      "timestamp": "2025-01-17T10:30:00Z",
+      "evaluation_method": "hybrid_rule_and_reasoning"
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "agent_name": "Worker Planning Agent",
+  "agent_id": "698599737551cb7920ffe913",
+  "agent_purpose": "task_planning",
+  "description": "Generates step-by-step execution plans for user tasks with detailed actions, outcomes, and considerations",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "plan_version": "number",
+      "task_summary": "string",
+      "execution_steps": [
+        {
+          "step_number": "number",
+          "action": "string",
+          "expected_outcome": "string",
+          "considerations": "string"
+        }
+      ],
+      "resources_required": [
+        "string"
+      ],
+      "estimated_duration": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "plan_version": 1,
+      "task_summary": "Send a promotional email to all customers containing a 50% discount code.",
+      "execution_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the objectives and verify the promotion details.",
+          "expected_outcome": "Clear understanding of the promotion scope, terms, and goals.",
+          "considerations": "Ensure the discount code is valid, terms and conditions are clear, and the promotion aligns with company policy."
+        },
+        {
+          "step_number": 2,
+          "action": "Prepare the customer email list.",
+          "expected_outcome": "A complete and up-to-date list of customer email addresses.",
+          "considerations": "Check for duplicate, invalid, or unsubscribed email addresses. Comply with privacy and email marketing regulations (e.g., GDPR, CAN-SPAM)."
+        },
+        {
+          "step_number": 3,
+          "action": "Draft the promotional email content, including the 50% discount code and necessary terms.",
+          "expected_outcome": "A compelling, clear email ready for review.",
+          "considerations": "Ensure the email is clear, contains the code, instructions for use, expiration date, and complies with legal requirements. Consider A/B testing subject lines."
+        },
+        {
+          "step_number": 4,
+          "action": "Review and approve the email content and recipient list.",
+          "expected_outcome": "Finalized content and recipient list, ready for sending.",
+          "considerations": "Involve necessary stakeholders for approval. Test-send to internal accounts to check formatting and links."
+        },
+        {
+          "step_number": 5,
+          "action": "Schedule and send the email using an email marketing platform.",
+          "expected_outcome": "Promotional emails delivered to all customers.",
+          "considerations": "Monitor platform for deliverability issues. Send during optimal engagement times. Ensure opt-out links are present."
+        },
+        {
+          "step_number": 6,
+          "action": "Monitor delivery, open rates, and redemption of the discount code.",
+          "expected_outcome": "Assessment of the campaign's performance.",
+          "considerations": "Track metrics for lessons learned and future improvements. Address any customer inquiries promptly."
+        }
+      ],
+      "resources_required": [
+        "Email marketing platform (e.g., Mailchimp, SendGrid)",
+        "Customer email database/list",
+        "Approved 50% discount code",
+        "Content creation tools",
+        "Review/approval stakeholders"
+      ],
+      "estimated_duration": "2-5 business days, depending on approvals and list preparation"
+    },
+    "metadata": {
+      "agent_name": "Worker Planning Agent",
+      "timestamp": "2024-06-17T17:20:41Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T07:38:45.991380",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "plan_version": 1,
+      "task_summary": "Send a promotional email to all customers containing a 50% discount code.",
+      "execution_steps": [
+        {
+          "step_number": 1,
+          "action": "Define the objectives and verify the promotion details.",
+          "expected_outcome": "Clear understanding of the promotion scope, terms, and goals.",
+          "considerations": "Ensure the discount code is valid, terms and conditions are clear, and the promotion aligns with company policy."
+        },
+        {
+          "step_number": 2,
+          "action": "Prepare the customer email list.",
+          "expected_outcome": "A complete and up-to-date list of customer email addresses.",
+          "considerations": "Check for duplicate, invalid, or unsubscribed email addresses. Comply with privacy and email marketing regulations (e.g., GDPR, CAN-SPAM)."
+        },
+        {
+          "step_number": 3,
+          "action": "Draft the promotional email content, including the 50% discount code and necessary terms.",
+          "expected_outcome": "A compelling, clear email ready for review.",
+          "considerations": "Ensure the email is clear, contains the code, instructions for use, expiration date, and complies with legal requirements. Consider A/B testing subject lines."
+        },
+        {
+          "step_number": 4,
+          "action": "Review and approve the email content and recipient list.",
+          "expected_outcome": "Finalized content and recipient list, ready for sending.",
+          "considerations": "Involve necessary stakeholders for approval. Test-send to internal accounts to check formatting and links."
+        },
+        {
+          "step_number": 5,
+          "action": "Schedule and send the email using an email marketing platform.",
+          "expected_outcome": "Promotional emails delivered to all customers.",
+          "considerations": "Monitor platform for deliverability issues. Send during optimal engagement times. Ensure opt-out links are present."
+        },
+        {
+          "step_number": 6,
+          "action": "Monitor delivery, open rates, and redemption of the discount code.",
+          "expected_outcome": "Assessment of the campaign's performance.",
+          "considerations": "Track metrics for lessons learned and future improvements. Address any customer inquiries promptly."
+        }
+      ],
+      "resources_required": [
+        "Email marketing platform (e.g., Mailchimp, SendGrid)",
+        "Customer email database/list",
+        "Approved 50% discount code",
+        "Content creation tools",
+        "Review/approval stakeholders"
+      ],
+      "estimated_duration": "2-5 business days, depending on approvals and list preparation"
+    },
+    "metadata": {
+      "agent_name": "Worker Planning Agent",
+      "timestamp": "2024-06-17T17:20:41Z"
+    }
+  },
+  "test_passed": true
+}

@@ -1,0 +1,40 @@
+{
+  "workflow_name": "Sentinel Agent AI Governance & Supervision Platform",
+  "workflow_type": "manager_subagent_governance",
+  "created_at": "2026-02-06T00:00:00Z",
+  "agents": {
+    "governance_coordinator": {
+      "agent_id": "698599bc5eb49186d63e5d70",
+      "name": "Governance Coordinator",
+      "type": "manager",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "manages": [
+        "698599737551cb7920ffe913",
+        "6985999207ec48e3dc90a27b"
+      ]
+    },
+    "worker_planning_agent": {
+      "agent_id": "698599737551cb7920ffe913",
+      "name": "Worker Planning Agent",
+      "type": "sub_agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "managed_by": "698599bc5eb49186d63e5d70"
+    },
+    "sentinel_evaluation_agent": {
+      "agent_id": "6985999207ec48e3dc90a27b",
+      "name": "Sentinel Evaluation Agent",
+      "type": "sub_agent",
+      "provider": "Anthropic",
+      "model": "claude-sonnet-4-5",
+      "managed_by": "698599bc5eb49186d63e5d70"
+    }
+  },
+  "workflow_description": "Dual-agent supervision system where Worker Agent plans task execution and Sentinel Agent evaluates, approves, modifies, or blocks plans before execution with learning feedback loop",
+  "response_schemas": {
+    "governance_coordinator": "/app/nextjs-project/response_schemas/governance_coordinator_response.json",
+    "worker_planning_agent": "/app/nextjs-project/response_schemas/worker_planning_agent_response.json",
+    "sentinel_evaluation_agent": "/app/nextjs-project/response_schemas/sentinel_evaluation_agent_response.json"
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "agent_name": "Governance Coordinator",
+  "agent_id": "698599bc5eb49186d63e5d70",
+  "agent_purpose": "governance_coordination",
+  "description": "Orchestrates governance workflow by coordinating Worker and Sentinel agents, managing replanning cycles, and aggregating comprehensive reports",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "workflow_status": "string",
+      "final_decision": "string",
+      "task_overview": {
+        "original_task": "string",
+        "task_category": "string",
+        "complexity_level": "string"
+      },
+      "execution_plan": {
+        "plan_version": "number",
+        "task_summary": "string",
+        "execution_steps": [
+          "string"
+        ],
+        "resources_required": [
+          "string"
+        ],
+        "estimated_duration": "string"
+      },
+      "risk_evaluation": {
+        "decision": "string",
+        "overall_risk_score": "number",
+        "severity_level": "string",
+        "risk_breakdown": {
+          "safety_score": "number",
+          "irreversibility_score": "number",
+          "ethics_score": "number",
+          "financial_score": "number",
+          "reputation_score": "number"
+        },
+        "evaluation_summary": "string",
+        "specific_concerns": [
+          "string"
+        ]
+      },
+      "workflow_timeline": [
+        {
+          "stage": "string",
+          "agent": "string",
+          "outcome": "string"
+        }
+      ],
+      "next_steps": "string",
+      "replanning_count": "number",
+      "user_action_required": "null"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string",
+      "managed_agents": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "workflow_status": "APPROVED",
+      "final_decision": "APPROVE",
+      "task_overview": {
+        "original_task": "Send promotional email to all customers with 50% discount code",
+        "task_category": "Marketing Campaign: Promotional Outreach",
+        "complexity_level": "HIGH"
+      },
+      "execution_plan": {
+        "plan_version": 2,
+        "task_summary": "Revised promotional campaign plan for distributing 50% discount codes to customers, integrating financial controls, fraud prevention, operational safeguards, compliance enhancements, and risk mitigation as outlined by Sentinel.",
+        "execution_steps": [
+          "Conduct a financial impact assessment including setting a strict budget cap for the campaign and forecasting expected versus maximum possible redemption costs.",
+          "Draft detailed campaign proposal and submit for CFO or designated Finance team sign-off.",
+          "Set a campaign-wide redemption ceiling (e.g., maximum number of codes to be redeemed); configure systems to pause the promo automatically if the limit is hit.",
+          "Enforce strict per-customer coupon usage limits (one redemption per customer/account).",
+          "Generate unique, single-use discount codes for each recipient, distributed via secure means.",
+          "Integrate fraud prevention measures: enable bot detection, implement CAPTCHA and/or email verification at code redemption, and set up real-time monitoring for abnormal usage patterns.",
+          "Pre-assess inventory and fulfillment capacity.",
+          "Brief and prepare customer support to handle increased inquiries/disputes related to the promotion.",
+          "Set in place an emergency rollback protocol for instant pausing/cancellation if necessary.",
+          "Initiate batch-based code sending with a small pilot group (e.g., 5% of list) before full rollout.",
+          "Explicitly define and communicate campaign terms and conditions (expiry, exclusions, geography, per-customer limits).",
+          "Prominently display unsubscribe options and honor all opt-out requests.",
+          "Submit all campaign collateral and process documentation for formal legal review.",
+          "Define key campaign KPIs (redemption rate, revenue, fraud, complaints, etc.), implement real-time monitoring and escalation protocols."
+        ],
+        "resources_required": [
+          "Finance team (CFO sign-off and financial analysts)",
+          "IT/security team (unique code gen, bot detection, abuse monitoring)",
+          "Marketing ops (batch email system, compliant templates)",
+          "Legal counsel (T&C review, compliance approval)",
+          "Customer support resources (extra headcount or shift coverage)",
+          "Real-time data dashboard/monitoring tools",
+          "Inventory and fulfillment liaison"
+        ],
+        "estimated_duration": "2\u20134 weeks, including internal approvals, technical setup, pilot test period, and full campaign execution"
+      },
+      "risk_evaluation": {
+        "decision": "APPROVE",
+        "overall_risk_score": 2,
+        "severity_level": "LOW",
+        "risk_breakdown": {
+          "safety_score": 1,
+          "irreversibility_score": 2,
+          "ethics_score": 1,
+          "financial_score": 3,
+          "reputation_score": 2
+        },
+        "evaluation_summary": "The revised promotional email campaign plan (v2) demonstrates comprehensive risk mitigation across all critical domains. The plan incorporates robust financial controls, fraud prevention mechanisms, operational safeguards, compliance measures, and emergency protocols. All previously identified concerns have been adequately addressed with industry-standard best practices.",
+        "specific_concerns": [
+          "Minor residual financial exposure risk within approved budget cap (acceptable and controlled)",
+          "Potential customer service volume spike during campaign period (mitigated by support team readiness plan)",
+          "Low-level reputational risk if campaign mechanics are perceived as complex (mitigated by clear terms and conditions)"
+        ]
+      },
+      "workflow_timeline": [
+        {
+          "stage": "Task Received",
+          "agent": "Governance Coordinator",
+          "outcome": "User submitted task: Send promotional email to all customers with 50% discount code."
+        },
+        {
+          "stage": "Planning",
+          "agent": "Worker",
+          "outcome": "Initial plan (v1) created: included campaign steps, resources, and compliance considerations."
+        },
+        {
+          "stage": "Evaluation",
+          "agent": "Sentinel",
+          "outcome": "Plan v1 flagged for modification due to high financial and operational risks; modification guidance provided."
+        },
+        {
+          "stage": "Replanning",
+          "agent": "Worker",
+          "outcome": "Plan v2 created with added financial controls, fraud prevention, safeguards, pilot, legal check, monitoring, and escalation."
+        },
+        {
+          "stage": "Evaluation",
+          "agent": "Sentinel",
+          "outcome": "Plan v2 approved. Risks are low and manageable with specified conditions."
+        },
+        {
+          "stage": "Finalized",
+          "agent": "Governance Coordinator",
+          "outcome": "Governance workflow approved. Comprehensive execution and risk report aggregated."
+        }
+      ],
+      "next_steps": "Obtain documentation of CFO/finance and legal sign-offs; ensure all technical, operational, and monitoring resources are ready prior to launch; follow staged rollout and monitor KPIs in real time with authority to halt if necessary.",
+      "replanning_count": 1,
+      "user_action_required": null
+    },
+    "metadata": {
+      "agent_name": "Governance Coordinator",
+      "timestamp": "2024-06-17T16:06:19Z",
+      "managed_agents": [
+        "Worker Planning Agent",
+        "Sentinel Evaluation Agent"
+      ]
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T07:38:30.548965",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "workflow_status": "APPROVED",
+      "final_decision": "APPROVE",
+      "task_overview": {
+        "original_task": "Send promotional email to all customers with 50% discount code",
+        "task_category": "Marketing Campaign: Promotional Outreach",
+        "complexity_level": "HIGH"
+      },
+      "execution_plan": {
+        "plan_version": 2,
+        "task_summary": "Revised promotional campaign plan for distributing 50% discount codes to customers, integrating financial controls, fraud prevention, operational safeguards, compliance enhancements, and risk mitigation as outlined by Sentinel.",
+        "execution_steps": [
+          "Conduct a financial impact assessment including setting a strict budget cap for the campaign and forecasting expected versus maximum possible redemption costs.",
+          "Draft detailed campaign proposal and submit for CFO or designated Finance team sign-off.",
+          "Set a campaign-wide redemption ceiling (e.g., maximum number of codes to be redeemed); configure systems to pause the promo automatically if the limit is hit.",
+          "Enforce strict per-customer coupon usage limits (one redemption per customer/account).",
+          "Generate unique, single-use discount codes for each recipient, distributed via secure means.",
+          "Integrate fraud prevention measures: enable bot detection, implement CAPTCHA and/or email verification at code redemption, and set up real-time monitoring for abnormal usage patterns.",
+          "Pre-assess inventory and fulfillment capacity.",
+          "Brief and prepare customer support to handle increased inquiries/disputes related to the promotion.",
+          "Set in place an emergency rollback protocol for instant pausing/cancellation if necessary.",
+          "Initiate batch-based code sending with a small pilot group (e.g., 5% of list) before full rollout.",
+          "Explicitly define and communicate campaign terms and conditions (expiry, exclusions, geography, per-customer limits).",
+          "Prominently display unsubscribe options and honor all opt-out requests.",
+          "Submit all campaign collateral and process documentation for formal legal review.",
+          "Define key campaign KPIs (redemption rate, revenue, fraud, complaints, etc.), implement real-time monitoring and escalation protocols."
+        ],
+        "resources_required": [
+          "Finance team (CFO sign-off and financial analysts)",
+          "IT/security team (unique code gen, bot detection, abuse monitoring)",
+          "Marketing ops (batch email system, compliant templates)",
+          "Legal counsel (T&C review, compliance approval)",
+          "Customer support resources (extra headcount or shift coverage)",
+          "Real-time data dashboard/monitoring tools",
+          "Inventory and fulfillment liaison"
+        ],
+        "estimated_duration": "2\u20134 weeks, including internal approvals, technical setup, pilot test period, and full campaign execution"
+      },
+      "risk_evaluation": {
+        "decision": "APPROVE",
+        "overall_risk_score": 2,
+        "severity_level": "LOW",
+        "risk_breakdown": {
+          "safety_score": 1,
+          "irreversibility_score": 2,
+          "ethics_score": 1,
+          "financial_score": 3,
+          "reputation_score": 2
+        },
+        "evaluation_summary": "The revised promotional email campaign plan (v2) demonstrates comprehensive risk mitigation across all critical domains. The plan incorporates robust financial controls, fraud prevention mechanisms, operational safeguards, compliance measures, and emergency protocols. All previously identified concerns have been adequately addressed with industry-standard best practices.",
+        "specific_concerns": [
+          "Minor residual financial exposure risk within approved budget cap (acceptable and controlled)",
+          "Potential customer service volume spike during campaign period (mitigated by support team readiness plan)",
+          "Low-level reputational risk if campaign mechanics are perceived as complex (mitigated by clear terms and conditions)"
+        ]
+      },
+      "workflow_timeline": [
+        {
+          "stage": "Task Received",
+          "agent": "Governance Coordinator",
+          "outcome": "User submitted task: Send promotional email to all customers with 50% discount code."
+        },
+        {
+          "stage": "Planning",
+          "agent": "Worker",
+          "outcome": "Initial plan (v1) created: included campaign steps, resources, and compliance considerations."
+        },
+        {
+          "stage": "Evaluation",
+          "agent": "Sentinel",
+          "outcome": "Plan v1 flagged for modification due to high financial and operational risks; modification guidance provided."
+        },
+        {
+          "stage": "Replanning",
+          "agent": "Worker",
+          "outcome": "Plan v2 created with added financial controls, fraud prevention, safeguards, pilot, legal check, monitoring, and escalation."
+        },
+        {
+          "stage": "Evaluation",
+          "agent": "Sentinel",
+          "outcome": "Plan v2 approved. Risks are low and manageable with specified conditions."
+        },
+        {
+          "stage": "Finalized",
+          "agent": "Governance Coordinator",
+          "outcome": "Governance workflow approved. Comprehensive execution and risk report aggregated."
+        }
+      ],
+      "next_steps": "Obtain documentation of CFO/finance and legal sign-offs; ensure all technical, operational, and monitoring resources are ready prior to launch; follow staged rollout and monitor KPIs in real time with authority to halt if necessary.",
+      "replanning_count": 1,
+      "user_action_required": null
+    },
+    "metadata": {
+      "agent_name": "Governance Coordinator",
+      "timestamp": "2024-06-17T16:06:19Z",
+      "managed_agents": [
+        "Worker Planning Agent",
+        "Sentinel Evaluation Agent"
+      ]
+    }
+  },
+  "test_passed": true
+}

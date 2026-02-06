@@ -1,0 +1,97 @@
+{
+  "workflow_name": "Sentinel Agent AI Governance & Supervision Platform",
+  "workflow_type": "manager_subagent_governance",
+  "description": "Dual-agent supervision system where Worker Agent plans task execution while Sentinel Agent evaluates, approves, modifies, or blocks those plans before execution",
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "User Task Submission",
+      "nodeCategory": "input"
+    },
+    {
+      "id": "governance_coordinator",
+      "type": "Agent",
+      "label": "Governance Coordinator",
+      "nodeCategory": "agent",
+      "agent_id": "698599bc5eb49186d63e5d70",
+      "agent_type": "manager"
+    },
+    {
+      "id": "worker_planning_agent",
+      "type": "Agent",
+      "label": "Worker Planning Agent",
+      "nodeCategory": "agent",
+      "agent_id": "698599737551cb7920ffe913",
+      "agent_type": "sub_agent"
+    },
+    {
+      "id": "sentinel_evaluation_agent",
+      "type": "Agent",
+      "label": "Sentinel Evaluation Agent",
+      "nodeCategory": "agent",
+      "agent_id": "6985999207ec48e3dc90a27b",
+      "agent_type": "sub_agent"
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "Governance Decision & Risk Report",
+      "nodeCategory": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "input_node",
+      "target": "governance_coordinator"
+    },
+    {
+      "source": "governance_coordinator",
+      "target": "worker_planning_agent"
+    },
+    {
+      "source": "governance_coordinator",
+      "target": "sentinel_evaluation_agent"
+    },
+    {
+      "source": "worker_planning_agent",
+      "target": "output_node"
+    },
+    {
+      "source": "sentinel_evaluation_agent",
+      "target": "output_node"
+    }
+  ],
+  "agents": {
+    "governance_coordinator": {
+      "agent_id": "698599bc5eb49186d63e5d70",
+      "name": "Governance Coordinator",
+      "type": "manager",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "manages": ["698599737551cb7920ffe913", "6985999207ec48e3dc90a27b"]
+    },
+    "worker_planning_agent": {
+      "agent_id": "698599737551cb7920ffe913",
+      "name": "Worker Planning Agent",
+      "type": "sub_agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.5,
+      "top_p": 0.95,
+      "managed_by": "698599bc5eb49186d63e5d70"
+    },
+    "sentinel_evaluation_agent": {
+      "agent_id": "6985999207ec48e3dc90a27b",
+      "name": "Sentinel Evaluation Agent",
+      "type": "sub_agent",
+      "provider": "Anthropic",
+      "model": "claude-sonnet-4-5",
+      "temperature": 0.3,
+      "top_p": 1,
+      "managed_by": "698599bc5eb49186d63e5d70"
+    }
+  }
+}
