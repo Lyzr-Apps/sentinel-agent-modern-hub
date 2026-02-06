@@ -164,27 +164,75 @@ export default function Home() {
         GOVERNANCE_COORDINATOR_ID
       )
 
+      console.log('AI Agent Response:', result)
+
       if (result.success && result.response.status === 'success') {
-        const governanceResult = result.response.result as GovernanceResult
-        setAnalysisResult(governanceResult)
+        let governanceResult: GovernanceResult
 
-        // Save to audit log
-        const auditEntry: AuditEntry = {
-          id: `audit_${Date.now()}`,
-          timestamp: new Date().toISOString(),
-          task: currentTask,
-          decision: governanceResult.final_decision,
-          severity: governanceResult.risk_evaluation.severity_level,
-          riskScore: governanceResult.risk_evaluation.overall_risk_score,
-          overridden: false,
-          fullResult: governanceResult,
+        // Handle different response structures
+        const responseData = result.response.result
+
+        console.log('Response Data:', responseData)
+
+        // Check if result is already a GovernanceResult or if it's wrapped
+        if (responseData && typeof responseData === 'object') {
+          // If response has the expected structure directly
+          if ('workflow_status' in responseData && 'final_decision' in responseData) {
+            governanceResult = responseData as GovernanceResult
+          }
+          // If response is wrapped in another result object
+          else if (responseData.result && typeof responseData.result === 'object') {
+            governanceResult = responseData.result as GovernanceResult
+          }
+          // If response is a string that needs parsing
+          else if (typeof responseData === 'string') {
+            try {
+              const parsed = JSON.parse(responseData)
+              governanceResult = parsed.result || parsed
+            } catch (parseError) {
+              console.error('Failed to parse response string:', parseError)
+              setError('Failed to parse agent response')
+              return
+            }
+          } else {
+            governanceResult = responseData as GovernanceResult
+          }
+
+          console.log('Parsed Governance Result:', governanceResult)
+
+          // Validate the governance result has required fields
+          if (!governanceResult.final_decision || !governanceResult.risk_evaluation) {
+            console.error('Invalid governance result structure:', governanceResult)
+            setError('Invalid response structure from agent')
+            return
+          }
+
+          setAnalysisResult(governanceResult)
+
+          // Save to audit log
+          const auditEntry: AuditEntry = {
+            id: `audit_${Date.now()}`,
+            timestamp: new Date().toISOString(),
+            task: currentTask,
+            decision: governanceResult.final_decision,
+            severity: governanceResult.risk_evaluation.severity_level,
+            riskScore: governanceResult.risk_evaluation.overall_risk_score,
+            overridden: false,
+            fullResult: governanceResult,
+          }
+
+          setAuditLog(prev => [auditEntry, ...prev])
+        } else {
+          console.error('Invalid response data:', responseData)
+          setError('Invalid response from agent')
         }
-
-        setAuditLog(prev => [auditEntry, ...prev])
       } else {
-        setError(result.error || 'Analysis failed. Please try again.')
+        const errorMsg = result.error || result.response?.message || 'Analysis failed. Please try again.'
+        console.error('Agent call failed:', errorMsg, result)
+        setError(errorMsg)
       }
     } catch (err) {
+      console.error('Error in analyzeTask:', err)
       setError(err instanceof Error ? err.message : 'An unexpected error occurred')
     } finally {
       setIsAnalyzing(false)
@@ -469,8 +517,17 @@ export default function Home() {
                     </div>
 
                     {error && (
-                      <div className="bg-red-950/30 border border-red-900/50 rounded-lg p-3 text-red-400 text-sm">
-                        {error}
+                      <div className="bg-red-950/30 border border-red-900/50 rounded-lg p-4">
+                        <div className="flex items-start gap-3">
+                          <XCircle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+                          <div className="flex-1">
+                            <h4 className="text-red-400 font-semibold mb-1">Analysis Error</h4>
+                            <p className="text-red-300 text-sm">{error}</p>
+                            <p className="text-red-400/70 text-xs mt-2">
+                              Check the browser console (F12) for more details.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     )}
 
